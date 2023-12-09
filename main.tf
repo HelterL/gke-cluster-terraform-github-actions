@@ -1,6 +1,6 @@
 provider "google" {
   project     = "dark-arcade-390613"
-  region      = "us-central1"
+  region      = "us-east4"
 }
 
 terraform {
