@@ -9,7 +9,7 @@ metadata:
 spec:
   project: gke-project
   source:
-    repoURL: https://github.com/HelterL/gke-cluster-terraform-github-actions
+    repoURL: https://github.com/HelterL/gke-cluster-terraform-github-actions.git
     targetRevision: HEAD
     path: app/applicationdeploy
   destination:
