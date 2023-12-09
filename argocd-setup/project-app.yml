@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-gke-project
+  namespace: argocd
+# Finalizador que garante que o projeto não seja excluído até que não seja referenciado por nenhum aplicativo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: gke-project
+  source:
+    repoURL: https://github.com/HelterL/gke-cluster-terraform-github-actions
+    targetRevision: HEAD
+    path: app/applicationdeploy
+  destination:
+    server: https://34.172.128.218 
+    namespace: meu-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+      
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
