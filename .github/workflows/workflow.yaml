@@ -5,7 +5,8 @@ on:
     branches: ["main"]
 
 env:
-  VERSION: "2.0"
+  VERSION: "3.0"
+  DOCKER_USER: "helterpitanga"
 
 jobs:
   terraform-ci:
