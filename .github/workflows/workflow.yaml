@@ -1,0 +1,46 @@
+name: Pipeline GKE com Terraform
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  terraform-ci:
+    name: "Terraform CI"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./
+        shell: bash
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Terraform plan
+        id: plan
+        run: terraform plan -out plan.tfplan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Terraform apply
+        id: apply
+        run: terraform apply plan.tfplan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
