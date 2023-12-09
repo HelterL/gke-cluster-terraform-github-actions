@@ -14,7 +14,7 @@ spec:
     path: app/applicationdeploy
   destination:
     server: https://34.172.128.218 
-    namespace: meu-app
+    namespace: my-app
   syncPolicy:
     automated:
       prune: true
