@@ -13,8 +13,8 @@ spec:
     targetRevision: HEAD
     path: app/applicationdeploy
   destination:
-    server: https://34.172.128.218 
-    namespace: my-app
+    server: https://34.28.39.181 
+    namespace: project-gke
   syncPolicy:
     automated:
       prune: true
