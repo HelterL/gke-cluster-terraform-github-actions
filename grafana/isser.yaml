@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+ name: letsencrypt-staging
+ namespace: cert-manager
+spec:
+ acme:
+   server: https://acme-staging-v02.api.letsencrypt.org/directory
+   email: helterpitanga@gmail.com
+   privateKeySecretRef:
+     name: grafana-tls
+   solvers:
+   - http01:
+       ingress:
+         class:  nginx

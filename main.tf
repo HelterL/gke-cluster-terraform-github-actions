@@ -1,5 +1,6 @@
 provider "google" {
   project     = "dark-arcade-390613"
+  
   region      = "us-east4"
 }
 
@@ -14,6 +15,7 @@ terraform {
 
 terraform {
   backend "gcs" {
+    
     bucket = "aquareladesafio4"
     prefix = "Aquarela/aquadesafio4.tfstate"
   }
