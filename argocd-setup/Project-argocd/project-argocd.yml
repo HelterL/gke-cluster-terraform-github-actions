@@ -12,7 +12,7 @@ spec:
   - https://github.com/HelterL/gke-cluster-terraform-github-actions.git
   destinations:
   - namespace: project-gke
-    server: https://34.28.39.181            
+    server: https://35.226.126.2            
   clusterResourceWhitelist:
   - group: "*"
     kind: "*"
