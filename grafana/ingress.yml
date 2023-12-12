@@ -1,18 +1,21 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: grafana-ingress
-  namespace: monitoring
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-spec:
-  rules:
-   - http:
-        paths:
-        - pathType: Prefix
-          path: "/"
-          backend:
-            service:
-              name: grafana
-              port:
-                number: 3000
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    name: grafana
+    namespace: monitoring
+  spec:
+    rules:
+      - host: www.examplegrafanaingress.com
+        http:
+          paths:
+            - pathType: Prefix
+              backend:
+                service:
+                  name: grafana
+                  port:
+                    number: 3000
+              path: /
+    tls:
+      - hosts:
+        - www.examplegrafanaingress.com
+        secretName: test-tls
