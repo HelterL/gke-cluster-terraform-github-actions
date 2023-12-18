@@ -74,9 +74,12 @@ jobs:
         with:
           credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
 
-          # Get the GKE credentials so we can deploy to the cluster
-      - name: Set up GKE credentialss
+      - name: Autenticando credenciais no cluster
         uses: google-github-actions/get-gke-credentials@v2
         with:
           cluster_name: ${{ env.CLUSTER_NAME }}
           location: ${{ env.LOCATION }}
+
+      - name: Get nodes
+        id: "get-nodes"
+        run: "kubectl get nodes"
