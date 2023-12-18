@@ -13,7 +13,7 @@ spec:
     targetRevision: HEAD
     path: app/applicationdeploy
   destination:
-    server: https://35.226.126.2 
+    server: https://35.136.222.218 
     namespace: project-gke
   syncPolicy:
     automated:
