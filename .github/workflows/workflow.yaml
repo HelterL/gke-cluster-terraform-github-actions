@@ -7,6 +7,8 @@ on:
 env:
   VERSION: "11.1"
   DOCKER_USER: "helterpitanga"
+  CLUSTER_NAME: "gke_cluster"
+  LOCATION: "us-central1"
 
 jobs:
   terraform-ci:
@@ -65,3 +67,16 @@ jobs:
         run: |
           docker build -t ${{ env.DOCKER_USER }}/appmicro2:${{ env.VERSION }} app/.
           docker push ${{ env.DOCKER_USER }}/appmicro2:${{ env.VERSION }}
+
+      - name: Credenciais google CLI
+        id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          GOOGLE_CREDENTIALS: "${{ secrets.GOOGLE_CREDENTIALS }}"
+
+          # Get the GKE credentials so we can deploy to the cluster
+      - name: Set up GKE credentials
+        uses: google-github-actions/get-gke-credentials@v0
+        with:
+          CLUSTER_NAME: ${{ env.CLUSTER_NAME }}
+          LOCATION: ${{ env.LOCATION }}
