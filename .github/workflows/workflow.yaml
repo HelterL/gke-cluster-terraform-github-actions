@@ -7,7 +7,7 @@ on:
 env:
   VERSION: "11.1"
   DOCKER_USER: "helterpitanga"
-  CLUSTER_NAME: "gke_cluster"
+  CLUSTER_NAME: "gkecluster"
   LOCATION: "us-central1"
 
 jobs:
