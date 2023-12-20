@@ -28,4 +28,3 @@ module "gke" {
   vpc_name = module.vpc.vpc_name
   subnet_name = module.vpc.subnet_name
 }
-
