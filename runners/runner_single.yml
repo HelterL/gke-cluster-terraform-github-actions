@@ -1,0 +1,10 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+   name: k8s-single-runner
+   namespace: actions-runner
+spec:
+  template:
+    spec:
+      repository: HelterL/gke-cluster-terraform-github-actions
