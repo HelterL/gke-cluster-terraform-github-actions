@@ -9,6 +9,7 @@ env:
   DOCKER_USER: "helterpitanga"
   CLUSTER_NAME: "gkecluster"
   LOCATION: "us-central1"
+  GCP_PROJECT_ID: "dark-arcade-390613"
 
 jobs:
   terraform-ci:
@@ -68,17 +69,18 @@ jobs:
           docker build -t ${{ env.DOCKER_USER }}/appmicro2:${{ env.VERSION }} app/.
           docker push ${{ env.DOCKER_USER }}/appmicro2:${{ env.VERSION }}
 
-      - name: Credenciais google CLI
-        id: "auth"
-        uses: "google-github-actions/auth@v0"
+      # Login to GCP
+      - uses: google-github-actions/setup-gcloud@v0.2.0
         with:
-          credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+          service_account_key: ${{ secrets.GOOGLE_CREDENTIALS }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
       - name: Autenticando credenciais no cluster
         uses: google-github-actions/get-gke-credentials@v2
         with:
           cluster_name: ${{ env.CLUSTER_NAME }}
           location: ${{ env.LOCATION }}
+          credentials: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Deploy no cluster
         run: |-
