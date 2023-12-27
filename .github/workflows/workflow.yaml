@@ -80,6 +80,7 @@ jobs:
         with:
           cluster_name: ${{ env.CLUSTER_NAME }}
           location: ${{ env.LOCATION }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
       - name: Deploy no cluster
         run: |-
