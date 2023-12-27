@@ -80,7 +80,6 @@ jobs:
         with:
           cluster_name: ${{ env.CLUSTER_NAME }}
           location: ${{ env.LOCATION }}
-          credentials: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Deploy no cluster
         run: |-
