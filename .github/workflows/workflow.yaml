@@ -7,8 +7,6 @@ on:
 env:
   VERSION: "11.1"
   DOCKER_USER: "helterpitanga"
-  CLUSTER_NAME: "gkecluster"
-  LOCATION: "us-central1"
   GCP_PROJECT_ID: "dark-arcade-390613"
 
 jobs:
@@ -80,8 +78,8 @@ jobs:
       - name: Set up GKE credentials
         uses: google-github-actions/get-gke-credentials@v2
         with:
-          cluster_name: ${{ env.CLUSTER_NAME }}
-          location: ${{ env.LOCATION }}
+          cluster_name: ${{ secrets.CLUSTER_NAME }}
+          location: ${{ secrets.LOCATION }}
 
       - name: Deploy no cluster
         run: |-
