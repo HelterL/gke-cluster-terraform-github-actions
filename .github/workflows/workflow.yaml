@@ -78,8 +78,8 @@ jobs:
       - name: Set up GKE credentials
         uses: google-github-actions/get-gke-credentials@v2
         with:
-          cluster_name: ${{ secrets.CLUSTER_NAME }}
-          location: ${{ secrets.LOCATION }}
+          cluster_name: ${{ vars.CLUSTER_NAME }}
+          location: ${{ vars.LOCATION }}
 
       - name: Deploy no cluster
         run: |-
