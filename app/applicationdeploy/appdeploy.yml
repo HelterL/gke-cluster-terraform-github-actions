@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: app2
-        image: helterpitanga/asdasdappmicro2:teste
+        image: helterpitanga/appmicro2:testeasdasd
         ports:
         - containerPort: 80
         resources:
@@ -72,7 +72,7 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: helterpitanga/asdasdappmicro2:teste
+      - image: helterpitanga/appmicro2:testeasdasd
         name: mysql
         env:
           # Use secret in real usage
