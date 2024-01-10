@@ -66,6 +66,10 @@ jobs:
         run: |
           docker build -t ${{ env.DOCKER_USER }}/appmicro2:${{ env.TAG }} app/.
           docker push ${{ env.DOCKER_USER }}/appmicro2:${{ env.TAG }}
+      
+      - name: Update YAML with new image ID
+        run: |
+        sed -i "s|image: helterpitanga/appmicro2:latest |image: helterpitanga/appmicro2:${{ env.TAG }}|g" app/applicationdeploy/appdeploy.yml
 
         # Setup gcloud CLI
       - name: Setup gcloud CLI
