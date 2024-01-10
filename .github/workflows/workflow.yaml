@@ -5,6 +5,7 @@ on:
     branches: ["main"]
 
 env:
+  TAG: $(git rev-parse --short "$GITHUB_SHA")
   DOCKER_USER: "helterpitanga"
   GCP_PROJECT_ID: "dark-arcade-390613"
 
@@ -63,8 +64,8 @@ jobs:
 
       - name: Build e push Docker image
         run: |
-          docker build -t ${{ env.DOCKER_USER }}/appmicro2:${{ git rev-parse --short "$GITHUB_SHA" }} app/.
-          docker push ${{ env.DOCKER_USER }}/appmicro2:${{ git rev-parse --short "$GITHUB_SHA" }}
+          docker build -t ${{ env.DOCKER_USER }}/appmicro2:${{ env.TAG }} app/.
+          docker push ${{ env.DOCKER_USER }}/appmicro2:${{ env.TAG }}
 
         # Setup gcloud CLI
       - name: Setup gcloud CLI
