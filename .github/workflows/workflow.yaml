@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 env:
-  VERSION: "${{ git rev-parse HEAD }}"
+  VERSION: "{{ git rev-parse HEAD }}"
   DOCKER_USER: "helterpitanga"
   GCP_PROJECT_ID: "dark-arcade-390613"
 
