@@ -87,5 +87,6 @@ jobs:
 
       - name: Deploy no cluster
         run: |-
+          kubectl create configmap my-config --from-literal=default-image=helterpitanga/appmicro2:703e968
           kubectl apply -f app/applicationdeploy/appdeploy.yml
           kubectl get pods
