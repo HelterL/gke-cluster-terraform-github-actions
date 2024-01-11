@@ -17,7 +17,7 @@ jobs:
         working-directory: ./
         shell: bash
     env:
-      IMAGE_NAME: helterpitanga/appmicro2:${{ github.ref }}
+      IMAGE_NAME: helterpitanga/appmicro2:${{ github.sha }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -68,7 +68,7 @@ jobs:
 
       - name: Update YAML with new image ID
         run: |
-          sed -i 's/image: helterpitanga.*/image: $IMAGE_NAME`/g' app/applicationdeploy/appdeploy.yml
+          sed -i 's/image: helterpitanga.*/image: $IMAGE_NAME/g' app/applicationdeploy/appdeploy.yml
 
         # Setup gcloud CLI
       - name: Setup gcloud CLI
@@ -86,6 +86,5 @@ jobs:
 
       - name: Deploy no cluster
         run: |-
-          kubectl create configmap my-config --from-literal=default-image=helterpitanga/appmicro2:703e968
           kubectl apply -f app/applicationdeploy/appdeploy.yml
           kubectl get pods
