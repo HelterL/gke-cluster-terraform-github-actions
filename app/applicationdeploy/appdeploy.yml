@@ -19,9 +19,12 @@ spec:
       labels:
         app: app2
     spec:
+      env:
+        - name: TAG
+          value: $(git rev-parse --short "$GITHUB_SHA")
       containers:
       - name: app2
-        image: helterpitanga/appmicro2:testeasdasd
+        image: helterpitanga/appmicro2:${TAG}
         ports:
         - containerPort: 80
         resources:
