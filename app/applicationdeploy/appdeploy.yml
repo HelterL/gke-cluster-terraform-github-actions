@@ -19,12 +19,9 @@ spec:
       labels:
         app: app2
     spec:
-      env:
-        - name: TAG
-          value: $(git rev-parse --short "$GITHUB_SHA")
       containers:
       - name: app2
-        image: helterpitanga/appmicro2:${TAG}
+        image: helterpitanga/appmicro2:teste
         ports:
         - containerPort: 80
         resources:
@@ -75,7 +72,7 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: helterpitanga/appmicro2:testeasdasd
+      - image: mysql:5.6
         name: mysql
         env:
           # Use secret in real usage
