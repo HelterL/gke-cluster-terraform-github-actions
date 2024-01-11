@@ -16,12 +16,9 @@ jobs:
       run:
         working-directory: ./
         shell: bash
-
+    env:
+      IMAGE_NAME: helterpitanga/appmicro2:${{ github.sha }}
     steps:
-      - name: Set image tag
-        run: |
-          IMAGE_NAME: helterpitanga/appmicro2:${{ github.sha }}
-
       - name: Checkout Repo
         uses: actions/checkout@v3
 
