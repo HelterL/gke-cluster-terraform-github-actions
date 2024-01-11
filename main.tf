@@ -1,4 +1,5 @@
 provider "google" {
+  credentials = "${file("keygcp.json")}"
   project     = "dark-arcade-390613"
   region      = "us-central1"
 }
@@ -14,6 +15,7 @@ terraform {
 
 terraform {
   backend "gcs" {
+    credentials = "keygcp.json"
     bucket = "aquareladesafio4"
     prefix = "Aquarela/aquadesafio4.tfstate"
   }
