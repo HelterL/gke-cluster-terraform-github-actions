@@ -5,7 +5,6 @@ on:
     branches: ["main"]
 
 env:
-  TAG: $(git rev-parse --short "$GITHUB_SHA")
   DOCKER_USER: "helterpitanga"
   GCP_PROJECT_ID: "dark-arcade-390613"
 
@@ -18,7 +17,9 @@ jobs:
       run:
         working-directory: ./
         shell: bash
-
+    env:
+      TAG: $(git rev-parse --short "$GITHUB_SHA")
+      IMAGE_NAME: helterpitanga/appmicro2:$TAG
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -69,7 +70,7 @@ jobs:
 
       - name: Update YAML with new image ID
         run: |
-          sed -i 's/image: helterpitanga.*/image: helterpitanga\/appmicro2:${{ env.TAG }}/g' app/applicationdeploy/appdeploy.yml
+          sed -i 's/image: helterpitanga.*/image: $IMAGE_NAME`/g' app/applicationdeploy/appdeploy.yml
 
         # Setup gcloud CLI
       - name: Setup gcloud CLI
