@@ -68,7 +68,7 @@ jobs:
 
       - name: Update YAML with new image ID
         run: |
-          sed -i 's/image: helterpitanga.*/image: $IMAGE_NAME/g' app/applicationdeploy/appdeploy.yml
+          sed -ir 's/image: helterpitanga.*/image: $IMAGE_NAME/g' app/applicationdeploy/appdeploy.yml
 
         # Setup gcloud CLI
       - name: Setup gcloud CLI
